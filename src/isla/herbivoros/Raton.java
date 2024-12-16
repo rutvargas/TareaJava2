@@ -10,26 +10,25 @@ public class Raton extends Animal implements Omnivoro {
 
     @Override
     public void mover() {
-        System.out.println("El raton " + getNombre() + " se mueve ágilmente.");
-        //setEnergia(getEnergia() - 1); // Reduce la energía al moverse
+       // System.out.println("El raton " + getNombre() + " se mueve ágilmente.");
     }
 
     @Override
     public void comer() {
-        System.out.println("El ratón está comiendo.");
+        //System.out.println("El ratón está comiendo.");
     }
 
     @Override
     public void reproducirse() {
-        System.out.println("El ratón se está reproduciendo.");
+        //System.out.println("El ratón se está reproduciendo.");
     }
     @Override
     public void cazar(Animal presa) {
-        System.out.println("El ratón está cazando " + presa.getNombre());
+        //System.out.println("El ratón está cazando " + presa.getNombre());
     }
 
     @Override
     public void comerPlanta() {
-        System.out.println("El ratón está comiendo una planta.");
+        //System.out.println("El ratón está comiendo una planta.");
     }
 }

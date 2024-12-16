@@ -87,10 +87,7 @@ public abstract class Animal implements Ocupable{
     }
 
 
-    public void ocupar() {
-        System.out.println(nombre + " está en la celda (" + posicionX + ", " + posicionY + ")");
-    }
-    //Metodos abstractos
+    public void ocupar() {}
     public abstract void mover();
     public abstract void comer();
     public abstract void reproducirse();

@@ -15,7 +15,7 @@ public class Main {
         // Crear algunos animales y plantas con posiciones aleatorias
         Lobo lobo = new Lobo("Lobo", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
         Oso oso=new Oso("Oso", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
-        Aguila aguila=new Aguila("Oso", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
+        Aguila aguila=new Aguila("Aguila", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
         Zorro zorro=new Zorro("Zorro", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
         Boa boa = new Boa("Boa", 20, 80, random.nextInt(6), random.nextInt(9), 3, 4, 60);
 
@@ -67,49 +67,37 @@ public class Main {
 
 
 
-        // Mover los animales
-        isla.moverAnimal(aguila);
-        isla.moverAnimal(boa);
-        isla.moverAnimal(lobo);
-        isla.moverAnimal(oso);
-        isla.moverAnimal(zorro);
-        isla.moverAnimal(bufalo);
-        isla.moverAnimal(caballo);
-        isla.moverAnimal(cabra);
-        isla.moverAnimal(ciervo);
-        isla.moverAnimal(conejo);
-        isla.moverAnimal(jabali);
-        isla.moverAnimal(oruga);
-        isla.moverAnimal(oveja);
-        isla.moverAnimal(pato);
-        isla.moverAnimal(raton);
 
+        // Crear y empezar hilos para cada animal
+        Thread loboThread = new Thread(new AnimalRunnable(lobo, isla));
+        Thread osoThread = new Thread(new AnimalRunnable(oso, isla));
+        Thread aguilaThread = new Thread(new AnimalRunnable(aguila, isla));
+        Thread zorroThread = new Thread(new AnimalRunnable(zorro, isla));
+        Thread boaThread = new Thread(new AnimalRunnable(boa, isla));
 
+        // inicia los hilos
+        loboThread.start();
+        osoThread.start();
+        aguilaThread.start();
+        zorroThread.start();
+        boaThread.start();
 
-        isla.mostrarIsla();
+        //hilo principal
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-
-
-        isla.comer(aguila);
-        isla.comer(boa);
-        isla.comer(lobo);
-        isla.comer(oso);
-        isla.comer(zorro);
-        isla.comer(bufalo);
-        isla.comer(caballo);
-        isla.comer(cabra);
-        isla.comer(ciervo);
-        isla.comer(conejo);
-        isla.comer(jabali);
-        isla.comer(oruga);
-        isla.comer(oveja);
-        isla.comer(pato);
-        isla.comer(raton);
-
+        // detener los hilos cuando el tiempo haya pasado
+        loboThread.interrupt();
+        osoThread.interrupt();
+        aguilaThread.interrupt();
+        zorroThread.interrupt();
+        boaThread.interrupt();
 
 
         isla.mostrarIsla();
-
 
     }
 }

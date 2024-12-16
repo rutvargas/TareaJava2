@@ -14,10 +14,9 @@ public class Isla {
         if (x >= 0 && x < matriz.length && y >= 0 && y < matriz[0].length) {
             // Si la posición está ocupada, buscar otra posición aleatoria
             while (matriz[x][y] != null) {
-                x = (int) (Math.random() * matriz.length);  // Nueva fila aleatoria
-                y = (int) (Math.random() * matriz[0].length);  // Nueva columna aleatoria
+                x = (int) (Math.random() * matriz.length);
+                y = (int) (Math.random() * matriz[0].length);
             }
-            // Asignar el ocupable a la posición encontrada
             matriz[x][y] = ocupable;
         } else {
             System.out.println("Posición fuera de los límites de la isla.");
@@ -25,13 +24,11 @@ public class Isla {
     }
 
 
-    // Método para mostrar la matriz de la isla con caracteres Unicode
     public void mostrarIsla() {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 if (matriz[i][j] != null) {
-                    // Si hay un objeto ocupable, se muestra un símbolo Unicode correspondiente al animal
-                    String animal = matriz[i][j].getClass().getSimpleName();  // Obtiene el nombre de la clase del objeto
+                    String animal = matriz[i][j].getClass().getSimpleName();
                     switch (animal) {
                         case "Aguila":
                             System.out.print("🦅");  //
@@ -40,53 +37,53 @@ public class Isla {
                             System.out.print("🐍");  //
                             break;
                         case "Lobo":
-                            System.out.print("🐺");  //
+                            System.out.print("🐺");
                             break;
                         case "Oso":
-                            System.out.print("🐻");  //
+                            System.out.print("🐻");
                             break;
                         case "Zorro":
-                            System.out.print("🦊");  //
+                            System.out.print("🦊");
                             break;
                         case "Bufalo":
-                            System.out.print("🐃");  //
+                            System.out.print("🐃");
                             break;
                         case "Caballo":
-                            System.out.print("🐎");  //
+                            System.out.print("🐎");
                             break;
                         case "Cabra":
-                            System.out.print("🐐");  //
+                            System.out.print("🐐");
                             break;
                         case "Ciervo":
-                            System.out.print("🦌");  //
+                            System.out.print("🦌");
                             break;
                         case "Conejo":
-                            System.out.print("🐇");  //
+                            System.out.print("🐇");
                             break;
                         case "Jabali":
-                            System.out.print("🐗");  //
+                            System.out.print("🐗");
                             break;
                         case "Oruga":
-                            System.out.print("🐛");  //
+                            System.out.print("🐛");
                             break;
                         case "Oveja":
-                            System.out.print("🐑");  //
+                            System.out.print("🐑");
                             break;
                         case "Pato":
-                            System.out.print("🦆");  //
+                            System.out.print("🦆");
                             break;
                         case "Raton":
-                            System.out.print("🐁");  //
+                            System.out.print("🐁");
                             break;
                         case "Planta":
-                            System.out.print("🌱");  //
+                            System.out.print("🌱");
                             break;
                         default:
-                            System.out.print("❓");  // Si el objeto es desconocido
+                            System.out.print("❓");
                             break;
                     }
                 } else {
-                    System.out.print(" .");  // Representa un espacio vacío
+                    System.out.print(" .");
                 }
             }
             System.out.println();
@@ -149,7 +146,7 @@ public class Isla {
                         continue;
                     }
 
-                    // Un carnívoro no puede comer plantas
+                    // Un carnívoro no puede otro carnivoro
                     if (depredador instanceof Carnivoro && !(presa instanceof Herbivoro)) {
                         System.out.println(depredador.getNombre() + " no puede comer a " + presa.getNombre());
                         continue;
@@ -165,27 +162,10 @@ public class Isla {
                 } else if (vecino instanceof Planta && depredador instanceof Herbivoro) {
                     // Herbívoros pueden comer plantas
                     matriz[vecinoX][vecinoY] = null;
-                    depredador.setEnergia(depredador.getEnergia() + 10); // Energía ganada al comer una planta
+                    depredador.setEnergia(depredador.getEnergia() + 10);
                     System.out.println(depredador.getNombre() + " comió una planta. Energía actual: " + depredador.getEnergia());
                     haComido = true;
                     break;
-                } else if (vecino instanceof Carnivoro && depredador instanceof Carnivoro) {
-                    Animal otroAnimal = (Animal) vecino;
-                    if (depredador instanceof Carnivoro && otroAnimal instanceof Carnivoro) {
-                        // Pelea entre carnívoros
-                        if (depredador.getEnergia() > otroAnimal.getEnergia()) {
-                            matriz[vecinoX][vecinoY] = null; // Eliminar al carnívoro más débil
-                            depredador.setEnergia(depredador.getEnergia() - otroAnimal.getEnergia() / 2); // Reducir algo de energía al ganador
-                            System.out.println(depredador.getNombre() + " ganó la pelea contra " + otroAnimal.getNombre());
-                        } else {
-                            matriz[x][y] = null; // Eliminar al carnívoro más débil
-                            otroAnimal.setEnergia(otroAnimal.getEnergia() - depredador.getEnergia() / 2); // Reducir algo de energía al ganador
-                            System.out.println(otroAnimal.getNombre() + " ganó la pelea contra " + depredador.getNombre());
-                            return; // El depredador fue eliminado
-                        }
-                        haComido = true;
-                        break;
-                    }
                 }
             }
         }

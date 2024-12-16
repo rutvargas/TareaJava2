@@ -12,10 +12,10 @@ public class AnimalRunnable implements  Runnable {
 
     @Override
     public void run() {
-        // Acción repetitiva: mover y comer
         while (true) {
+            System.out.println("Nuevo proceso de hilo "+animal.getNombre());
             isla.moverAnimal(animal);   // Mover al animal
-            isla.comer(animal);         // El animal intenta comer
+            isla.comer(animal);
             try {
                 Thread.sleep(1000);     // El animal realiza su acción cada 1 segundo
             } catch (InterruptedException e) {
