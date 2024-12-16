@@ -3,16 +3,16 @@ package isla;
 public class Isla {
     private Ocupable[][] matriz;
 
-    // Constructor de la isla con un tamaño específico
+    // constructor de la isla con un tamaño específico 6x9
     public Isla(int filas, int columnas) {
         this.matriz = new Ocupable[filas][columnas];
     }
 
-    // Método para poblar la isla con un objeto ocupable en una posición específica
+    // método para poblar la isla con un objeto ocupable en una posición específica
     public void poblarIsla(Ocupable ocupable, int x, int y) {
-        // Verificar si la posición está dentro de los límites
+        // verifica si la posición está dentro de los límites
         if (x >= 0 && x < matriz.length && y >= 0 && y < matriz[0].length) {
-            // Si la posición está ocupada, buscar otra posición aleatoria
+            // si la posición está ocupada busca otra posición aleatoria
             while (matriz[x][y] != null) {
                 x = (int) (Math.random() * matriz.length);
                 y = (int) (Math.random() * matriz[0].length);
@@ -97,8 +97,8 @@ public class Isla {
         int y = animal.getPosicionY();
 
         int[][] direcciones = {
-                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // Arriba, abajo, izquierda, derecha
-                {-1, -1}, {-1, 1}, {1, -1}, {1, 1}  // Diagonales
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // arriba, abajo, izquierda, derecha
+                {-1, -1}, {-1, 1}, {1, -1}, {1, 1}  // diagonales
         };
 
         boolean movido = false;
@@ -140,19 +140,19 @@ public class Isla {
                 if (vecino instanceof Animal) {
                     Animal presa = (Animal) vecino;
 
-                    // Un herbívoro no puede comer animales
+                    // un herbívoro no puede comer animales
                     if (depredador instanceof Herbivoro) {
                         System.out.println(depredador.getNombre() + " es herbívoro y no puede comer animales.");
                         continue;
                     }
 
-                    // Un carnívoro no puede otro carnivoro
+                    // carnívoro no puede otro carnivoro
                     if (depredador instanceof Carnivoro && !(presa instanceof Herbivoro)) {
                         System.out.println(depredador.getNombre() + " no puede comer a " + presa.getNombre());
                         continue;
                     }
 
-                    // Consumir la presa
+                    // consumir la presa
                     matriz[vecinoX][vecinoY] = null;
                     depredador.setEnergia(depredador.getEnergia() + presa.getEnergia());
                     System.out.println(depredador.getNombre() + " comió a " + presa.getNombre() + ". Energía actual: " + depredador.getEnergia());
@@ -160,7 +160,7 @@ public class Isla {
                     break;
 
                 } else if (vecino instanceof Planta && depredador instanceof Herbivoro) {
-                    // Herbívoros pueden comer plantas
+                    // herbívoro puede comer plantas
                     matriz[vecinoX][vecinoY] = null;
                     depredador.setEnergia(depredador.getEnergia() + 10);
                     System.out.println(depredador.getNombre() + " comió una planta. Energía actual: " + depredador.getEnergia());
@@ -172,7 +172,7 @@ public class Isla {
 
         if (!haComido) {
             System.out.println(depredador.getNombre() + " no encontró comida y ha muerto.");
-            matriz[x][y] = null; // Eliminar al depredador de la isla
+            matriz[x][y] = null; // elimina al depredador de la isla
         }
     }
 

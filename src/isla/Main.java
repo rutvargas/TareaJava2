@@ -12,7 +12,7 @@ public class Main {
         Isla isla= new Isla(6,9);
         Random random=new Random();
 
-        // Crear algunos animales y plantas con posiciones aleatorias
+        // //objetos de animales y plantas con posiciones aleatorias
         Lobo lobo = new Lobo("Lobo", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
         Oso oso=new Oso("Oso", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
         Aguila aguila=new Aguila("Aguila", 50, 100, random.nextInt(6), random.nextInt(9), 5, 10, 100);
@@ -36,7 +36,7 @@ public class Main {
 
 
 
-        // Poblar la isla con los animales y plantas en posiciones aleatorias
+        //// poblar la isla con los animales y plantas en posiciones aleatorias
 
         isla.poblarIsla(aguila, aguila.getPosicionX(), aguila.getPosicionY());
         isla.poblarIsla(boa, boa.getPosicionX(), boa.getPosicionY());
@@ -61,14 +61,14 @@ public class Main {
 
 
 
-        // Mostrar la isla con los ocupantes
+        ///mostrar la isla
         System.out.println("Mapa de la isla:");
         isla.mostrarIsla();
 
 
 
 
-        // Crear y empezar hilos para cada animal
+        /// crea y empeza hilos para cada animal
         Thread loboThread = new Thread(new AnimalRunnable(lobo, isla));
         Thread osoThread = new Thread(new AnimalRunnable(oso, isla));
         Thread aguilaThread = new Thread(new AnimalRunnable(aguila, isla));
