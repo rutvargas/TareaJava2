@@ -172,7 +172,7 @@ public class Isla {
 
         if (!haComido) {
             System.out.println(depredador.getNombre() + " no encontró comida y ha muerto.");
-            matriz[x][y] = null; // elimina al depredador de la isla
+            matriz[x][y] = null; /// elimina al depredador de la isla
         }
     }
 
