@@ -1,5 +1,7 @@
 package isla;
 
+import java.util.Random;
+
 public class Isla {
     private Ocupable[][] matriz;
 
@@ -96,14 +98,21 @@ public class Isla {
         int x = animal.getPosicionX();
         int y = animal.getPosicionY();
 
+        //Consejo: generar un numero aleatorio.
+        //Entre 0 y 7
+
         int[][] direcciones = {
                 {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // arriba, abajo, izquierda, derecha
                 {-1, -1}, {-1, 1}, {1, -1}, {1, 1}  // diagonales
         };
 
-        boolean movido = false;
 
-        for (int[] dir : direcciones) {
+        boolean movido=false;
+        Random random=new Random();
+
+        while (!movido) { //cambiar a while. Luego random
+            // Si movido no es falso es decir si movido es verdadero
+            int[] dir=direcciones[random.nextInt(7)];
             int nuevoX = x + dir[0];
             int nuevoY = y + dir[1];
 
@@ -131,7 +140,9 @@ public class Isla {
         int[][] direcciones = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
         boolean haComido = false;
 
-        for (int[] dir : direcciones) {
+        Random random=new Random();
+        while (!haComido) {
+            int[] dir=direcciones[random.nextInt(7)];
             int vecinoX = x + dir[0];
             int vecinoY = y + dir[1];
             if (vecinoX >= 0 && vecinoX < matriz.length && vecinoY >= 0 && vecinoY < matriz[0].length) {
@@ -143,13 +154,13 @@ public class Isla {
                     // un herbívoro no puede comer animales
                     if (depredador instanceof Herbivoro) {
                         System.out.println(depredador.getNombre() + " es herbívoro y no puede comer animales.");
-                        continue;
+                        break;
                     }
 
                     // carnívoro no puede otro carnivoro
                     if (depredador instanceof Carnivoro && !(presa instanceof Herbivoro)) {
                         System.out.println(depredador.getNombre() + " no puede comer a " + presa.getNombre());
-                        continue;
+                        break;
                     }
 
                     // consumir la presa

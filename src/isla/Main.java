@@ -57,18 +57,12 @@ public class Main {
         isla.poblarIsla(planta1, planta1.getPosicionX(), planta1.getPosicionY());
         isla.poblarIsla(planta2, planta2.getPosicionX(), planta2.getPosicionY());
 
-
-
-
-
         ///mostrar la isla
         System.out.println("Mapa de la isla:");
         isla.mostrarIsla();
 
-
-
-
         /// crea y empeza hilos para cada animal
+
         Thread loboThread = new Thread(new AnimalRunnable(lobo, isla));
         Thread osoThread = new Thread(new AnimalRunnable(oso, isla));
         Thread aguilaThread = new Thread(new AnimalRunnable(aguila, isla));
@@ -84,20 +78,17 @@ public class Main {
 
         //hilo principal
         try {
-            Thread.sleep(4000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         // detener los hilos cuando el tiempo haya pasado
-        loboThread.interrupt();
-        osoThread.interrupt();
-        aguilaThread.interrupt();
-        zorroThread.interrupt();
-        boaThread.interrupt();
-
-
+       // loboThread.i;
+        //osoThread.stop();
+        //aguilaThread.stop();
+        //zorroThread.stop();
+        //boaThread.stop();
         isla.mostrarIsla();
-
     }
 }

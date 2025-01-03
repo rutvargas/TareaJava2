@@ -40,7 +40,7 @@ public class Planta implements Ocupable{
         //this.energia = energia;
     //}
 
-    public void ocupar() {
-        System.out.println("Planta en la posición (" + posicionX + ", " + posicionY + ")");
-    }
+    //public void ocupar() {
+     //   System.out.println("Planta en la posición (" + posicionX + ", " + posicionY + ")");
+    //}
 }
